@@ -37,7 +37,7 @@
                 "forceUpdateTag": "[parameters('utc')]",
                 "azPowerShellVersion": "5.4",
                 "arguments": "[format(' -subscriptionId {0} -roleDefinition {1} -principalId {2}', subscription().subscriptionId, parameters('roleDefinitionId'), parameters('principalId'))]",
-                "primaryScriptUri": "https://raw.githubusercontent.com/SecureHats/azure-misfit/azurekid/priv-esc/poc/priv-esc-arm-template/miaow.ps1",
+                "primaryScriptUri": "https://raw.githubusercontent.com/SecureHats/miaow/main/miaow.ps1",
                 "supportingScriptUris": [],
                 "timeout": "PT30M",
                 "cleanupPreference": "Always",
