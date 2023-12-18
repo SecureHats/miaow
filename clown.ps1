@@ -15,5 +15,5 @@
          _\\    \\__
         (___|    \__)
 "
-Write-Output $logo
+Write-Output "`e[5;36m$logo`e[0m";
 whoami
