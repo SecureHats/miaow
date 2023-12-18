@@ -29,7 +29,7 @@
             "properties": {
                 "forceUpdateTag": "[parameters('utc')]",
                 "azPowerShellVersion": "5.4",
-                "primaryScriptUri": "https://raw.githubusercontent.com/SecureHats/miaow/main/clash.ps1",
+                "primaryScriptUri": "https://raw.githubusercontent.com/SecureHats/miaow/main/clown.ps1",
                 "supportingScriptUris": [],
                 "timeout": "PT30M",
                 "cleanupPreference": "Always",
